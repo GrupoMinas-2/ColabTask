@@ -1,0 +1,104 @@
+# page manager______________________
+<ControllerTelas>:
+    LoginPage:
+        name: ('loginpage')
+
+    Screen:
+        name: ('home')
+        Button:
+            text: 'teste'
+            on_release: root.current= 'loginpage'
+        
+
+# Screen 1 _________________________
+<LoginPage>:
+    
+    BoxLayout: 
+        id: login
+        orientation: 'vertical'
+        padding: 50
+        spacing: 30
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Image: 
+            source:'images/listIcon copy.png'
+
+
+        # name user______________________
+        BoxLayout: 
+            id: nameUser
+            size_hint_y: None
+            height: 40
+            
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source:'images/listIcon copy.png'
+
+            TextInput: 
+                id: inputName
+                hint_text: "digite seu nome"
+                multiline: False
+
+
+        # id user______________________
+        BoxLayout: 
+            id: identifierUser
+            size_hint_y: None
+            height: 40
+
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source:'images/listIcon copy.png'
+            
+            TextInput: 
+                id: inputUser
+
+                hint_text: "digite seu nikname"
+                multiline: False
+        
+        
+        # password user______________________
+        BoxLayout: 
+            id: passwordUser
+            size_hint_y: None
+            height: 40
+
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source: 'images/listIcon copy.png'
+            
+            TextInput: 
+                id: passwordInput
+                password: True
+                multiline: False
+                hint_text: "digite sua senha"
+
+        Button: 
+            size_hint_y: None
+            text: "iniciando"
+            height: 50
+            on_release: app.root.current ='home'
+
+            background_normal: ''
+            background_down: ''
+            background_color: 0, 0, 0, 0  # Transparente
+            color: 1, 1, 1, 1  # Cor do texto
+
+            canvas.before:
+                Color:
+                    rgba: (0,0.2,1, 0.5)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [15, 15, 15, 15]
+
+

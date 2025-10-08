@@ -3,9 +3,10 @@ from kivy.uix.screenmanager import ScreenManager , Screen
 from kivy.uix.label import Label
 
 from kivy.config import Config
-Config.set('graphics', 'width', '400')
+Config.set('graphics', 'width', '350')
+Config.set('graphics', 'height', '600')
 
-class ControlerTelas(ScreenManager):
+class ControllerTelas(ScreenManager):
     pass
 
 class LoginPage(Screen):
@@ -13,7 +14,7 @@ class LoginPage(Screen):
 
 class ColabTask(App): 
     def build(self):
-        return ControlerTelas()
+        return ControllerTelas()
 
 
 ColabTask().run()
