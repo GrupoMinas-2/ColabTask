@@ -9,7 +9,7 @@ Config.set('graphics', 'height', '600')
 class ControllerTelas(ScreenManager):
     pass
 
-class LoginPage(Screen):
+class RegisterPage(Screen):
     pass
 
 class ColabTask(App): 

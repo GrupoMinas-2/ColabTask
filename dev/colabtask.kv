@@ -1,23 +1,41 @@
+# regras --------------------------
+<BoxInput@BoxLayout>:
+    size_hint_y: None
+    height: dp(40)
+    padding: dp(6) 
+    spacing: dp(8)
+
+    canvas.before:
+        Color:
+            rgba: 0.9, 0.9, 0.9, 1
+        RoundedRectangle:
+            pos: self.x, self.y
+            size: self.size
+            radius: [10]
+
+
+
 # page manager______________________
 <ControllerTelas>:
-    LoginPage:
-        name: ('loginpage')
+    RegisterPage:
+        name: ('registerpage')
 
     Screen:
         name: ('home')
         Button:
             text: 'teste'
-            on_release: root.current= 'loginpage'
+            on_release: root.current= 'registerpage'
         
 
+
 # Screen 1 _________________________
-<LoginPage>:
+<RegisterPage>:
     
     BoxLayout: 
         id: login
         orientation: 'vertical'
-        padding: 50
-        spacing: 30
+        padding: dp(50)
+        spacing: dp(30)
 
         canvas.before:
             Color:
@@ -31,10 +49,7 @@
 
 
         # name user______________________
-        BoxLayout: 
-            id: nameUser
-            size_hint_y: None
-            height: 40
+        BoxInput: 
             
             Image:
                 size_hint_x: 0.2
@@ -43,62 +58,78 @@
 
             TextInput: 
                 id: inputName
-                hint_text: "digite seu nome"
+                hint_text: "Nome"
                 multiline: False
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.9
+                padding: [10, 5] 
 
 
         # id user______________________
-        BoxLayout: 
-            id: identifierUser
-            size_hint_y: None
-            height: 40
-
-            Image:
-                size_hint_x: 0.2
-                allow_stretch: True
-                source:'images/listIcon copy.png'
-            
-            TextInput: 
-                id: inputUser
-
-                hint_text: "digite seu nikname"
-                multiline: False
-        
-        
-        # password user______________________
-        BoxLayout: 
-            id: passwordUser
-            size_hint_y: None
-            height: 40
-
+        BoxInput: 
+    
             Image:
                 size_hint_x: 0.2
                 allow_stretch: True
                 source: 'images/listIcon copy.png'
             
             TextInput: 
+                id: inputUser
+                multiline: False
+                hint_text: "Nikname"
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.8
+                padding: [10, 5]
+
+        
+        # password user______________________
+        BoxInput:
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source: 'images/listIcon copy.png'
+
+            TextInput:
                 id: passwordInput
                 password: True
                 multiline: False
-                hint_text: "digite sua senha"
+                hint_text: "Senha"
+
+                background_normal: ''
+                background_active: ''
+                background_color: 0, 0, 0, 0
+
+                size_hint_x: 0.8
+                padding: [10, 5]
+                
 
         Button: 
             size_hint_y: None
-            text: "iniciando"
-            height: 50
+            text: "entrar"
+            height: dp(50)
             on_release: app.root.current ='home'
 
             background_normal: ''
             background_down: ''
-            background_color: 0, 0, 0, 0  # Transparente
-            color: 1, 1, 1, 1  # Cor do texto
+            background_color: 0, 0, 0, 0  
+            color: 1, 1, 1, 1  
 
             canvas.before:
                 Color:
-                    rgba: (0,0.2,1, 0.5)
+                    rgba: ( 0, 0.5, 0.9, 1 )
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
                     radius: [15, 15, 15, 15]
+
+
 
 
