@@ -13,10 +13,25 @@
             size: self.size
             radius: [10]
 
+<EnterButton@Button>:
+    background_normal: ''
+    background_down: ''
+    background_color: 0, 0, 0, 0  
+    color: 1, 1, 1, 1  
 
+    canvas.before:
+        Color:
+            rgba: ( 0, 0.5, 0.9, 1 )
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
 
 # page manager______________________
 <ControllerTelas>:
+    LoginPage:
+        name: ('loginpage')
+
     RegisterPage:
         name: ('registerpage')
 
@@ -24,22 +39,97 @@
         name: ('home')
         Button:
             text: 'teste'
-            on_release: root.current= 'registerpage'
+            on_release: root.current= 'loginpage'
         
 
+# Screen login _________________________
+<LoginPage>:
+    BoxLayout:
+        id: login
+        orientation: 'vertical'
+        padding: dp(50)
+        spacing: dp(30)
+        
 
-# Screen 1 _________________________
+        canvas.before:
+            Color:
+                rgba: ( 1, 1, 1, 1 )
+            Rectangle: 
+                pos: self.pos
+                size: self.size
+
+        Image: 
+            size_hint_y: 0.5
+            source:'images/listIcon copy.png'
+
+        BoxInput:
+
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source:'images/listIcon copy.png'
+            
+            TextInput:
+                id: inputMail
+                hint_text: "E-mail"
+                multiline: False
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.9
+                padding: [10, 5]
+        
+        BoxInput:
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source:'images/listIcon copy.png'  
+
+            TextInput:
+                id: inpuPassword
+                hint_text: "Senha"
+                multiline: False
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.9
+                padding: [10, 5]
+        
+        BoxLayout:
+            size_hint_y: 0.2
+            spacing: dp(5)
+            EnterButton:
+                id: btnAccess
+                size_hint_y: None
+                size_hint_x: 0.4
+                height: dp(40)
+                text: 'Entrar'
+                on_release: app.root.current= 'home'
+
+            EnterButton:
+                id: btnReirect
+                size_hint_y: None
+                size_hint_x: 0.2
+                height: dp(40)
+                text: 'cadastrar'
+                on_release: app.root.current= 'registerpage'
+
+# Screen cadastro _________________________
 <RegisterPage>:
     
     BoxLayout: 
-        id: login
+        id: register
         orientation: 'vertical'
         padding: dp(50)
         spacing: dp(30)
 
         canvas.before:
             Color:
-                rgba: 1, 1, 1, 1  
+                rgba: ( 1, 1, 1, 1 ) 
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -57,8 +147,8 @@
                 source:'images/listIcon copy.png'
 
             TextInput: 
-                id: inputName
-                hint_text: "Nome"
+                id: inputMail
+                hint_text: "E-mail"
                 multiline: False
 
                 background_normal: ''
@@ -78,9 +168,9 @@
                 source: 'images/listIcon copy.png'
             
             TextInput: 
-                id: inputUser
+                id: inputNameUser
                 multiline: False
-                hint_text: "Nikname"
+                hint_text: "Nome"
 
                 background_normal: ''
                 background_active: ''
@@ -98,7 +188,7 @@
                 source: 'images/listIcon copy.png'
 
             TextInput:
-                id: passwordInput
+                id: inputPassword
                 password: True
                 multiline: False
                 hint_text: "Senha"
@@ -111,24 +201,12 @@
                 padding: [10, 5]
                 
 
-        Button: 
+        EnterButton: 
+            
             size_hint_y: None
-            text: "entrar"
-            height: dp(50)
+            text: "Criar conta"
+            height: dp(40)
             on_release: app.root.current ='home'
-
-            background_normal: ''
-            background_down: ''
-            background_color: 0, 0, 0, 0  
-            color: 1, 1, 1, 1  
-
-            canvas.before:
-                Color:
-                    rgba: ( 0, 0.5, 0.9, 1 )
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [15, 15, 15, 15]
 
 
 

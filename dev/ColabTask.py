@@ -9,6 +9,9 @@ Config.set('graphics', 'height', '600')
 class ControllerTelas(ScreenManager):
     pass
 
+class LoginPage(Screen):
+    pass
+
 class RegisterPage(Screen):
     pass
 
