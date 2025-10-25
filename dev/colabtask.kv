@@ -1,4 +1,5 @@
-# regras --------------------------
+# REGRAS --------------------------
+
 # padrão para o fundo da tela -------
 <BGwhite@BoxLayout>:
     orientation: 'vertical'
@@ -40,8 +41,9 @@
             radius: [10]
 
 #
-#
-# page manager______________________
+
+# PAGINAS ----------------------
+# Page manager______________________
 <ControllerTelas>:
     LoginPage:
         name: ('loginpage')
@@ -67,6 +69,7 @@
             size_hint_y: 0.5
             source:'images/listIcon copy.png'
 
+        # mail user________
         BoxInput:
 
             Image:
@@ -86,6 +89,7 @@
                 size_hint_x: 0.9
                 padding: [10, 5]
         
+        # password user________
         BoxInput:
             Image:
                 size_hint_x: 0.2
@@ -138,7 +142,7 @@
             source:'images/listIcon copy.png'
 
 
-        # name user________
+        # mail user________
         BoxInput: 
             
             Image:
@@ -159,8 +163,8 @@
                 padding: [10, 5] 
 
 
-        # id user_______
-    
+        # name user_______
+        BoxInput:
             Image:
                 size_hint_x: 0.2
                 allow_stretch: True
@@ -241,8 +245,11 @@
                 text: "adicionar" 
                 on_release: root.insertModal()
 
-        
-# entidades --------------------
+#
+       
+# ELEMENTOS --------------------
+
+# Núcleo
 <Nucleo>:
     id: nucleo
     size_hint_y: None
@@ -263,51 +270,84 @@
                 id: taskDescription
                 text: "09/09/2009"
 
-
+# Modal de criação de núcleos
 <ModalNucleo>:
     size_hint: 0.9, 0.6 # o widget ocupa porcentagem da tela
-    auto_dismiss: True # tenho que chamado o dismiss() 
+    auto_dismiss: True # tenho que chamar o dismiss() 
     
-    BoxLayout:
+    BGwhite:
         id: modalNucleo
-        padding: 30
+        padding: [30, 40]
         spacing: 10
-        orientation: 'vertical'
+        
 
         Label:
-            text: "novo nucleo" 
+            text: "Novo núcleo" 
+            font_size: 20
+            text_size: self.size 
+            halign: "left"
             size_hint_y: None
             height: dp(30)
+            color: (0, 0, 0, 1)
 
         BoxLayout:
             size_hint_y: None
+            height: 60
             Image:
-                source: 'images/listIcon copy.png'
+                source: 'images/ui_user_profile_avatar_person_icon_208734.png'
                 allow_stretch: True
-                size_hint_x: 1
-                size_hint_y: None
+                size_hint_x: 0.7
+                size_hint_y: 1
 
             TextInput:
                 id: inputTitle
-                hint_text: "titulo"    
+                hint_text: "titulo"
+                multiline: False    
                 size_hint_y: None
                 size_hint_x: 2
                 height: dp(40)
                 
         Label:
-            text: 'descrição'
+            text: 'Descrição'
+            color: (0, 0, 0, 1)
+            font_size: 20
+            text_size: self.size
+            halign: 'left'
             size_hint_y: None
             height: dp(20)
 
         TextInput:
             id: inputDescription
             hint_text: "Descrição"
-            size_hint_y: None
+            multiline: True
+            size_hint_y: 2
             height: dp(40)
         
-        Button:
+        BoxLayout:
+            spacing: dp(5)
             size_hint_y: 1
-            text: 'Criar'
-            on_release: 
+            EnterButton:
+                size_hint_x: 2
+                text: 'Criar'
+                
+                on_release: root.dismiss()
+            
+            Button:
+                text: 'Cancelar'
+                size_hint_x: 1
+                on_release: root.dismiss()
+
+                background_normal: ''
+                background_down: ''
+                background_color: 0, 0, 0, 0  
+                color: 1, 1, 1, 1
+                canvas.before:
+                    Color: 
+                        rgba: 0.6, 0.6, 0.6, 1
+                    RoundedRectangle: 
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+                    
 
 
