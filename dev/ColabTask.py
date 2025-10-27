@@ -22,8 +22,6 @@ class RegisterPage(Screen):
 
 
 class HomePage(Screen):
-    def __init__( self, nucleo= [ ], **Kwargs ): 
-        super().__init__(**Kwargs)
 
     def insertModal(self):
         self.modal= ModalNucleo()
@@ -40,9 +38,7 @@ class HomePage(Screen):
         )       
 
 class ModalNucleo(ModalView):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        pass
+    pass
 
 class Nucleo(BoxLayout):
     def __init__( self, titulo='tarefa', descrição='desc',**Kwargs ): 
@@ -55,6 +51,17 @@ class Nucleo(BoxLayout):
         super().__init__(**Kwargs)
         self.ids.nucleoTitle.text = titulo
         self.ids.taskDescription.text= descrição
+
+
+class TasksPage(Screen):
+    def insertModal(self):
+        self.modal= ModalTask()
+        self.modal.parent_screen = self
+        self.modal.open()
+        pass
+
+class ModalTask(ModalView):
+    pass
 
 
 class ColabTask(App): 

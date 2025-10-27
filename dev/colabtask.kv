@@ -1,5 +1,6 @@
-# REGRAS --------------------------
 
+# REGRAS ===============================================
+#
 # padrão para o fundo da tela -------
 <BGwhite@BoxLayout>:
     orientation: 'vertical'
@@ -42,15 +43,25 @@
             radius: [10]
 
 #padrão textinputs de um modal ------
-<ModalTextInput@TextInput>:
+<TextInputModal@TextInput>:
     height: dp(10)
     padding: [0, 4]
     background_normal: ''
     background_active: ''
     background_color: (0, 0, 0, 0)
 
+#padrão button behavior ------
+<ItenBehavior@ButtonBehavior+BoxLayout>:
+    canvas.before:
+        Color: 
+            rgba: (1, 1, 1, 1) if self.state == 'normal' else (0.7, 0.7, 0.7, 1)
+        Rectangle: 
+            size: root.size 
+            pos: root.pos 
+
 #
-# PAGINAS ----------------------
+# PAGINAS ===============================================
+#
 # Page manager______________________
 <ControllerTelas>:
     LoginPage:
@@ -62,6 +73,8 @@
     HomePage:
         name: ('homepage')
 
+    TasksPage:
+        name: ('taskspage')
         
 #
 # Screen login ____________________________________
@@ -223,6 +236,7 @@
 
 # Screen núcleos familiares ____________________________________
 <HomePage>: 
+    padding: [0]
     BGwhite:
         id: homeLayout
 
@@ -245,7 +259,6 @@
                 size_hint_y: None
                 height: self.minimum_height 
 
-        
         BoxLayout:
             size_hint_y: 0.1
             padding: [60, 4]   
@@ -255,14 +268,50 @@
                 on_release: root.insertModal()
 
 
-# ELEMENTOS --------------------
+# Screen tarefas ____________________________________
+<TasksPage>:
+    BGwhite:
+        id: taskslayout
+        
+        Label:
+            text: 'minhas tarefas'
+            font_size: 40
+            color: (0,0,0,1)
 
+        ScrollView:
+            do_scroll_x: False 
+
+            BoxLayout:
+                id: containerTarefa
+                orientation: 'vertical'
+                padding: 10
+                size_hint_y: None
+                height: self.minimum_height
+       
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: [20, 5]
+            
+            Button:
+                text: 'criar tarefa'
+                on_release: root.insertModal()
+                
+
+
+#
+# ELEMENTOS ===============================================
+#
+# Modal de criação de núcleos
+<ModalNucleo>:
 # Núcleo
 <Nucleo>:
     id: nucleo
     size_hint_y: None
     height: dp(60)
-    BoxLayout:
+    ItenBehavior:
+        padding: 0
+        on_release: app.root.current= 'taskspage'
+
         canvas.before:
             Color:
                 rgba: (0.5, 0.5, 0.5, 1)
@@ -295,18 +344,9 @@
                 text_size: self.size
                 color: (0.4, 0.4, 0.4, 1)
 
-        Button:
-            #padding: 50
-            background_normal: ''
-            size_hint_x: 0.5
-            Image:
-                source: 'images/enterbutonicon.png'
-                allow_stretch: True
-                keep_ratio: False
 
 
-# Modal de criação de núcleos
-<ModalNucleo>:
+
     size_hint: 0.9, 0.6 # o widget ocupa porcentagem da tela
     auto_dismiss: False # tenho que chamar o dismiss() 
     
@@ -337,7 +377,7 @@
                 size_hint_x: 0.7
                 size_hint_y: 1
 
-            ModalTextInput:
+            TextInputModal:
                 id: inputTitle
                 hint_text: "titulo"
                 multiline: False    
@@ -380,7 +420,7 @@
                 size_hint_y: 0.5
                 height: dp(20)
 
-            ModalTextInput: 
+            TextInputModal: 
                 id: inputDescription
                 hint_text: "Descrição"
                 multiline: True
@@ -424,4 +464,14 @@
                         radius: [10]
                     
 
+# Modal de criação de tarefas
+<ModalTask>:
+    size_hint: 0.9 , 0.6
+    auto_dismiss: True
 
+    BGwhite:
+        id: modalTask
+        padding: [10, 30]
+        
+        Label:
+            text: 'modal ativado'
