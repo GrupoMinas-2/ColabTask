@@ -27,6 +27,7 @@
 
 #padrão dos botões de entrada ------
 <EnterButton@Button>:
+    
     background_normal: ''
     background_down: ''
     background_color: 0, 0, 0, 0  
@@ -40,8 +41,15 @@
             size: self.size
             radius: [10]
 
-#
+#padrão textinputs de um modal ------
+<ModalTextInput@TextInput>:
+    height: dp(10)
+    padding: [0, 4]
+    background_normal: ''
+    background_active: ''
+    background_color: (0, 0, 0, 0)
 
+#
 # PAGINAS ----------------------
 # Page manager______________________
 <ControllerTelas>:
@@ -53,10 +61,10 @@
 
     HomePage:
         name: ('homepage')
+
         
-
-
-# Screen login _________________________
+#
+# Screen login ____________________________________
 <LoginPage>:
     
     BGwhite:
@@ -218,119 +226,185 @@
     BGwhite:
         id: homeLayout
 
-        FloatLayout:
-            size_hint_y: 0.09
-            orientation: 'vertical'
+        #FloatLayout:
+            # size_hint_y: 0.09
+            # orientation: 'vertical'
+            # ActionBar:
+            #    pos_hint: {'top': 1}
+            #    ActionView:
+            #       ActionPrevious:
+            #           on_release: app.root.current= 'loginpage'
 
-            ActionBar:
-                pos_hint: {'top': 1}
-                ActionView:
-                    ActionPrevious:
-                        on_release: app.root.current= 'loginpage'
-
-        ScrollView:
+        ScrollView:          
             do_scroll_x: False
 
             BoxLayout:
                 id: containerNucleos
                 orientation: 'vertical'
-
                 padding: 10
+                size_hint_y: None
+                height: self.minimum_height 
+
         
         BoxLayout:
             size_hint_y: 0.1
-            padding: 60, 4   
+            padding: [60, 4]   
 
             Button:
-                text: "adicionar" 
+                text: "novo Nucleo" 
                 on_release: root.insertModal()
 
-#
-       
+
 # ELEMENTOS --------------------
 
 # Núcleo
 <Nucleo>:
     id: nucleo
     size_hint_y: None
-    height: dp(200)
+    height: dp(60)
     BoxLayout:
+        canvas.before:
+            Color:
+                rgba: (0.5, 0.5, 0.5, 1)
+            Line:
+                rectangle: (app.root.get_screen("homepage").ids.containerNucleos.x, self.y, app.root.get_screen("homepage").ids.containerNucleos.width, self.height)
+                width: 1
+
         Image:
+            size_hint_x: 0.5
             id: taskImage
-            source: 'images/listIcon copy.png'
+            source: 'images/ui_user_profile_avatar_person_icon_208734.png'
 
         BoxLayout:
             orientation: 'vertical'
+            size_hint_x: 2
+
             Label:
                 id: nucleoTitle
-                text: "tarefa"
-                font_size: 35
+                text: "nome núcleo"
+                font_size: 20
+                halign: 'left'
+                text_size: self.size
+                color: (0, 0, 0, 1)
 
             Label:
                 id: taskDescription
-                text: "09/09/2009"
+                text: "descrição"
+                halign: 'left'
+                valign: 'top'
+                text_size: self.size
+                color: (0.4, 0.4, 0.4, 1)
+
+        Button:
+            #padding: 50
+            background_normal: ''
+            size_hint_x: 0.5
+            Image:
+                source: 'images/enterbutonicon.png'
+                allow_stretch: True
+                keep_ratio: False
+
 
 # Modal de criação de núcleos
 <ModalNucleo>:
     size_hint: 0.9, 0.6 # o widget ocupa porcentagem da tela
-    auto_dismiss: True # tenho que chamar o dismiss() 
+    auto_dismiss: False # tenho que chamar o dismiss() 
     
     BGwhite:
         id: modalNucleo
-        padding: [30, 40]
+        padding: [20, 10]
         spacing: 10
-        
 
         Label:
             text: "Novo núcleo" 
-            font_size: 20
-            text_size: self.size 
+            font_size: 25
             halign: "left"
+            text_size: self.size
             size_hint_y: None
             height: dp(30)
             color: (0, 0, 0, 1)
 
+
+        # campo de nome ------------------
         BoxLayout:
             size_hint_y: None
             height: 60
+            #padding: [0, 10]
+
             Image:
                 source: 'images/ui_user_profile_avatar_person_icon_208734.png'
                 allow_stretch: True
                 size_hint_x: 0.7
                 size_hint_y: 1
 
-            TextInput:
+            ModalTextInput:
                 id: inputTitle
                 hint_text: "titulo"
                 multiline: False    
                 size_hint_y: None
+                pos_hint_y: 1
                 size_hint_x: 2
-                height: dp(40)
-                
-        Label:
-            text: 'Descrição'
-            color: (0, 0, 0, 1)
-            font_size: 20
-            text_size: self.size
-            halign: 'left'
-            size_hint_y: None
-            height: dp(20)
+                height: dp(30)
+                canvas.after:
+                    Color:
+                        rgba: 0.6, 0.6, 0.6, 1 
+                    Line:
+                        points: [self.x, self.y , self.right, self.y]  
+                        width: 1.2                
 
-        TextInput:
-            id: inputDescription
-            hint_text: "Descrição"
-            multiline: True
+
+        # Divisoria entre os campos ---------------
+        BoxLayout: 
+            height: 5
+            size_hint_y: 0.2
+            canvas.before:
+                Color: 
+                    rgba: (0.5, 0.5, 0.5, 1)
+                Line: 
+                    points: (self.x , self.y, self.right, self.y)
+                    width: 1.2
+
+
+        # Campo de descrição --------------   
+        BoxLayout: 
+            orientation: 'vertical'
             size_hint_y: 2
-            height: dp(40)
-        
+            spacing: dp(5)
+            padding: [0, 10]
+            Label: 
+                text: 'Descrição'
+                font_size: 25
+                color: (0, 0, 0, 1)
+                halign: 'left'
+                text_size: self.size
+                size_hint_y: 0.5
+                height: dp(20)
+
+            ModalTextInput: 
+                id: inputDescription
+                hint_text: "Descrição"
+                multiline: True
+                size_hint_y: 2
+                height: dp(40)
+                padding: dp(5)
+                color: (1, 1, 1, 1)
+
+                canvas.before: 
+                    Color:  
+                        rgba: (0.5, 0.5, 0.5, 1)
+                    Line: 
+                        rounded_rectangle:(self.x, self.y, self.width, self.height, 5)
+                        width: 1.02
+
+                
+        # bottões para criar e cancelar -------------
         BoxLayout:
             spacing: dp(5)
-            size_hint_y: 1
+            size_hint_y: 0.5
             EnterButton:
                 size_hint_x: 2
                 text: 'Criar'
-                
-                on_release: root.dismiss()
+                on_release: app.root.get_screen("homepage").insertNucleo() , root.dismiss()
             
             Button:
                 text: 'Cancelar'

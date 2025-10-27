@@ -22,19 +22,39 @@ class RegisterPage(Screen):
 
 
 class HomePage(Screen):
-    # def __init__( self, titulo, descrição, imagem, **Kwargs ):
-    #    super().__init__(**Kwargs)
-    def insertModal(self):
-        
-        modal= ModalNucleo()
-        modal.parent_screen = self
-        modal.open()
+    def __init__( self, nucleo= [ ], **Kwargs ): 
+        super().__init__(**Kwargs)
 
+    def insertModal(self):
+        self.modal= ModalNucleo()
+        self.modal.parent_screen = self
+        self.modal.open()
+
+    def insertNucleo(self):
+        self.modal.parent_screen = self
+        titulo= self.modal.ids.inputTitle.text
+        descricao=self.modal.ids.inputDescription.text
+
+        self.ids.containerNucleos.add_widget(
+            Nucleo(titulo, descricao)
+        )       
 
 class ModalNucleo(ModalView):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         pass
+
+class Nucleo(BoxLayout):
+    def __init__( self, titulo='tarefa', descrição='desc',**Kwargs ): 
+        if not titulo.strip():
+            titulo = "nome núcleo"
+        if not descrição.strip():
+            descrição= "descrição"
+
+        # atribuit valor a descrição
+        super().__init__(**Kwargs)
+        self.ids.nucleoTitle.text = titulo
+        self.ids.taskDescription.text= descrição
 
 
 class ColabTask(App): 
