@@ -7,19 +7,17 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager , Screen
 from kivy.factory import Factory
 from kivy.uix.modalview import ModalView 
+from interface.widgets.modalNucleo_iten import ModalNucleo
 
 
 class ControllerTelas(ScreenManager):
     pass
 
-
 class LoginPage(Screen):
     pass
 
-
 class RegisterPage(Screen):
     pass
-
 
 class HomePage(Screen):
 
@@ -37,8 +35,8 @@ class HomePage(Screen):
             Nucleo(titulo, descricao)
         )       
 
-class ModalNucleo(ModalView):
-    pass
+#class ModalNucleo(ModalView):
+#    pass
 
 class Nucleo(BoxLayout):
     def __init__( self, titulo='tarefa', descrição='desc',**Kwargs ): 

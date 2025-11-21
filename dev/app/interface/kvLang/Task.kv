@@ -1,0 +1,33 @@
+#: include app/interface/kvLang/Components.kv
+
+<Task>: 
+    Image:
+        source: 'dev/static/images/ui_user_profile_avatar_person_icon_208734.png'
+        allow_stretch: True
+        size_hint_x: 0.7
+        size_hint_y: 1
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 2
+
+        Label:
+            id: taskTitle 
+            text: 'nome tarefa'
+
+        Label:
+            id: taskDescription
+            text: 'descrição'
+    
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 2
+
+        Label:
+            id: tasDate 
+            text: 'dd/mm/aaaa'
+
+        Label:
+            id: taskPerson
+            text: 'integrante@email.com'
+    

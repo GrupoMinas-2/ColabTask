@@ -1,0 +1,39 @@
+#: include app/interface/kvLang/Components.kv
+
+<HomePage>: 
+    padding: [0]
+    name: ('homepage')
+    BGwhite:
+        id: homeLayout
+
+        #FloatLayout:
+            # size_hint_y: 0.09
+            # orientation: 'vertical'
+            # ActionBar:
+            #    pos_hint: {'top': 1}
+            #    ActionView:
+            #       ActionPrevious:
+            #           on_release: app.root.current= 'loginpage'
+
+        ScrollView:          
+            do_scroll_x: False
+            BoxLayout:
+                id: containerNucleos
+                orientation: 'vertical'
+                padding: 10
+                size_hint_y: None
+                height: self.minimum_height 
+                Button:
+                    size_hint_y: 1
+                    text: 'voltar'
+                    on_release: root.get_screen("loginpage")
+
+
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: [60, 4]   
+
+            Button:
+                text: "novo Nucleo" 
+                on_release: root.insertModal()
+

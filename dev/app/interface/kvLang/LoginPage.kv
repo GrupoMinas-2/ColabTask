@@ -1,0 +1,74 @@
+#: include app/interface/kvLang/Components.kv
+
+<LoginPage>:
+    name: ('loginpage')
+
+    BGwhite:
+        id: loginLayout
+
+        padding: dp(50)
+        spacing: dp(30)
+        
+        Image: 
+            size_hint_y: 0.5
+            source:'static/icons/listIcon copy.png'
+
+        # mail user________
+        BoxInput:
+
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source:'static/images/ui_user_profile_avatar_person_icon_208734.png'
+            
+            TextInput:
+                id: inputMail
+                hint_text: "E-mail"
+                multiline: False
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.9
+                padding: [10, 5]
+        
+        # password user________
+        BoxInput:
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source:'static/images/ui_user_profile_avatar_person_icon_208734.png'  
+
+            TextInput:
+                id: inpuPassword
+                hint_text: "Senha"
+                multiline: False
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.9
+                padding: [10, 5]
+
+        # botões de aceso e cadastro ________
+        BoxLayout:
+            size_hint_y: 0.2
+            spacing: dp(5)
+            EnterButton:
+                id: btnAccess
+                size_hint_y: None
+                size_hint_x: 0.4
+                height: dp(40)
+                text: 'Entrar'
+                on_release: app.root.current= 'homepage'
+
+            EnterButton:
+                id: btnRedrect
+                size_hint_y: None
+                size_hint_x: 0.2
+                height: dp(40)
+                text: 'cadastrar'
+                on_release: app.root.current= 'registerpage'
+

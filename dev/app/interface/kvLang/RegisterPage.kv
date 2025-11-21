@@ -1,0 +1,84 @@
+#: include app/interface/kvLang/Components.kv
+
+<RegisterPage>:
+    name: ('registerpage')
+
+    BGwhite: 
+        id: registerLayout
+
+        padding: dp(50)
+        spacing: dp(30)
+
+        Image: 
+            source:'images/listIcon copy.png'
+
+
+        # mail user________
+        BoxInput: 
+            
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source:'images/listIcon copy.png'
+
+            TextInput: 
+                id: inputMail
+                hint_text: "E-mail"
+                multiline: False
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.9
+                padding: [10, 5] 
+
+
+        # name user_______
+        BoxInput:
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source: 'images/listIcon copy.png'
+            
+            TextInput: 
+                id: inputNameUser
+                multiline: False
+                hint_text: "Nome"
+
+                background_normal: ''
+                background_active: ''
+                background_color: (0, 0, 0, 0)
+
+                size_hint_x: 0.8
+                padding: [10, 5]
+
+        
+        # password user______
+        BoxInput:
+            Image:
+                size_hint_x: 0.2
+                allow_stretch: True
+                source: 'images/listIcon copy.png'
+
+            TextInput:
+                id: inputPassword
+                password: True
+                multiline: False
+                hint_text: "Senha"
+
+                background_normal: ''
+                background_active: ''
+                background_color: 0, 0, 0, 0
+
+                size_hint_x: 0.8
+                padding: [10, 5]
+                
+
+        EnterButton: 
+            
+            size_hint_y: None
+            text: "Criar conta"
+            height: dp(40)
+            on_release: app.root.current ='homepage'
+
