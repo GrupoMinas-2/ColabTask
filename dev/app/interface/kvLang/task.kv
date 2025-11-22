@@ -1,6 +1,10 @@
 #: include app/interface/kvLang/Components.kv
 
 <Task>: 
+    id: taskBox
+    size_hint_y: None
+    height: dp(60)
+    
     Image:
         source: 'dev/static/images/ui_user_profile_avatar_person_icon_208734.png'
         allow_stretch: True
@@ -14,20 +18,34 @@
         Label:
             id: taskTitle 
             text: 'nome tarefa'
+            font_size: 18
+            color: (0,0,0,1)
+            halign: 'left'
+            text_size: self.size
 
         Label:
             id: taskDescription
             text: 'descrição'
+            color: (0.4, 0.4, 0.4, 1)
+            halign: 'left'
+            text_size: self.size
+
     
     BoxLayout:
         orientation: 'vertical'
-        size_hint_x: 2
+        size_hint_x: 1
 
         Label:
-            id: tasDate 
+            id: taskDate 
             text: 'dd/mm/aaaa'
+            color: (0.4, 0.4, 0.4, 1)
+            halign: 'right'
+            text_size: self.size
 
         Label:
             id: taskPerson
             text: 'integrante@email.com'
+            color: (0.4, 0.4, 0.4, 1)
+            halign: 'right'
+            text_size: self.size
     
