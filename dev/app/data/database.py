@@ -37,8 +37,8 @@ class Database:
         self.connection.commit()
 
     def readData_many(self, query, values=()):
-        self.cursor.executemany(query, values)
-        self.connection.commit()
+        self.cursor.execute(query, values)
+        return self.cursor.fetchall()
 
 
 #db= Database()

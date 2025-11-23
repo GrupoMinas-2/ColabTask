@@ -3,6 +3,7 @@ from app.data.database import Database
 class Usee_repository:
     def __init__(self):
         self.dataBase = Database()
+        
 
     def insert_register(self, user):
         query= """ 

@@ -1,14 +1,31 @@
+from kivy.lang.builder import Builder
+
 from kivy.uix.screenmanager import Screen
-#from app.domain.use_cases.login_user import LoginUserUseCase
+
+from app.domain.useCases.login_user import usecase_login
+
+from app.interface.widgets.poupError_iten import PopupError
+
+Builder.load_file("dev/app/interface/kvLang/LoginPage.kv")
 
 class LoginPage(Screen):
-    def do_login(self):
-        email = self.ids.email_input.text
-        senha = self.ids.password_input.text
     
-    #    try:
-    #        user = LoginUserUseCase().execute(email, senha)
-    #        self.ids.status_label.text = f"Bem-vindo, {user.name}!"
-    #    except Exception as e:
-    #        self.ids.status_label.text = str(e)
-    #pass
+    def do_login(self):
+        pass
+        email_input = self.ids.inputMail.text
+        password_input = self.ids.inpuPassword.text
+
+        self.usecase = usecase_login()
+
+        response = self.usecase.executeLogin(email_input, password_input)
+
+        if response["sucess"]:
+            print(response["message"])
+            self.manager.current = "homepage"
+
+        else:
+            print("erro", response["message"])
+            self.popup= PopupError()
+            self.popup.inserPopupError(response["message"])
+        
+    

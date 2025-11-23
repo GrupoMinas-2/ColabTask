@@ -7,7 +7,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager , Screen
 from kivy.factory import Factory
 from kivy.uix.modalview import ModalView 
-from interface.widgets.modalNucleo_iten import ModalNucleo
+from dev.app.interface.widgets.modalNucleo_iten import ModalNucleo
 
 
 class ControllerTelas(ScreenManager):
