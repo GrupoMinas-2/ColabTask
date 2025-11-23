@@ -10,13 +10,13 @@ class Auth_service:
         if self.repository.find_by_email(email): 
             return {
                 "sucess": False,
-                "response": "usuário já existe"
+                "response": "Usuário já existente! \nUse outro email para o cadastro."
             }
-        
-        newUser= User(self, email= email, name= name, pasword= pasword)
+        else: 
+            newUser= User(email, name, pasword)
 
-        self.repository.insert_register(newUser)
-        return {
-                "sucess": True,
-                "response": "usuário cadastrado"
-            }
+            self.repository.insert_register(newUser)
+            return {
+                    "sucess": True,
+                    "response": "usuário cadastrado"
+                }

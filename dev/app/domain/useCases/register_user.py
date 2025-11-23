@@ -8,4 +8,8 @@ class useCase_registerUser:
         
         result= self.serviceAuth.register(email=email, name= name, pasword= pasword)
 
+        if not result["sucess"]:
+            return result
+
+        return {"sucess": True, "message": "Usuário criado"}
     

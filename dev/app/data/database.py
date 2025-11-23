@@ -30,7 +30,7 @@ class Database:
 
     def readData_one(self, query, values=()):
         self.cursor.execute(query, values)
-        self.connection.commit()
+        return self.cursor.fetchone()
 
     def setData_many(self, query, values=()):
         self.cursor.executemany(query, values)

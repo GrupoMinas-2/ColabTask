@@ -12,7 +12,7 @@ class Usee_repository:
 
         parms =(user.email,
                 user.name, 
-                user.password)
+                user.pasword)
 
         self.dataBase.setData_one(query , parms)
     
@@ -20,6 +20,6 @@ class Usee_repository:
     def find_by_email(self, email ):
         query= " SELECT * FROM users WHERE email = ? "
         value= (email, )
-        result= self.dataBase.readData_one(query, values= value)
+        result= self.dataBase.readData_one(query, value)
         return result
         
