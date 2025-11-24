@@ -1,4 +1,5 @@
 from app.domain.services.authentication import Auth_service
+from app.domain.services.session import Session
 
 class usecase_login:
     def __init__(self):
@@ -9,5 +10,8 @@ class usecase_login:
 
         if not result["sucess"]:
             return result
+        
         else:
+            self.session = Session()
+            self.session.user_id = result["iduser"]
             return {"sucess": True, "message": "Login bem sucedido!"}

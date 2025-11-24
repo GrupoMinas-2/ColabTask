@@ -1,0 +1,48 @@
+@startuml
+
+entity "Users" as users {
+    *id : INTEGER <<PK>>
+    --
+    name : TEXT
+    email : TEXT <<UNIQUE>>
+    password: TEXT
+}
+
+entity "Núcleos" as nucleos {
+    *id : INTEGER <<PK>>
+    --
+    titlenucleo : TEXT NOT NULL
+    description : TEXT
+}
+
+entity "Tarefas" as tarefas {
+    *id : INTEGER <<PK>>
+    --
+    title_task : TEXT NOT NULL
+    descricao : TEXT
+    status : TEXT NOT NULL
+    end_date: TEXT
+    nucleo_id : INTEGER <<FK>>
+}
+
+entity "Usuário ↔ Núcleo" as usuario_nucleo {
+    *user_id : INTEGER <<PK, FK>>
+    *nucleo_id : INTEGER <<PK, FK>>
+}
+
+entity "Usuário ↔ Tarefa" as usuario_tarefa {
+    *user_id : INTEGER <<PK, FK>>
+    *tarefa_id : INTEGER <<PK, FK>>
+}
+
+
+' Relacionamentos
+users ||--o{ usuario_nucleo : participa
+nucleos ||--o{ usuario_nucleo : contém
+
+nucleos ||--o{ tarefas : possui
+
+users ||--o{ usuario_tarefa : realiza
+tarefas ||--o{ usuario_tarefa : atribuída a
+
+@enduml

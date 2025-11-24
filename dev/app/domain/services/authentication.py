@@ -5,8 +5,7 @@ class Auth_service:
     def __init__(self):
         self.repository= Usee_repository()
 
-    def register(self, email, name, pasword):
-        
+    def register(self, email, name, pasword):        
 
         if self.repository.find_by_email(email): 
             return {
@@ -39,7 +38,8 @@ class Auth_service:
             if  dataUser[3] == pasword: 
                 return {
                     "sucess": True,
-                    "message": "Senha correta!"
+                    "message": "Senha correta!",
+                    "iduser": dataUser[0]
                 }
             else: 
                 return {
