@@ -1,6 +1,6 @@
+from app.data.repositories.user_repository import Usee_repository
 from app.data.repositories.nucleo_repository import Nucleo_repository
 from app.domain.entities.nucleo import Nucleo
-from app.data.repositories.user_repository import Usee_repository
 
 class Nucleo_service:
     def __init__(self):

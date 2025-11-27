@@ -2,6 +2,8 @@ from app.data.database import Database
 from app.data.repositories.user_nucleo_repository import User_Nucleo_repository
 
 class Nucleo_repository:
+    id_nucleo = None
+
     def __init__(self):
         self.database= Database()
         self.conectrepository = User_Nucleo_repository()
@@ -10,16 +12,18 @@ class Nucleo_repository:
 
         query = """
             INSERT INTO nucleos (title_nucleo, decription) VALUES (?, ?)
+            RETURNING *
         """
         parms= (nucleo.title, 
                 nucleo.description)
         
-        self.database.setData_one(query, parms)
+        result = self.database.setData_one(query, parms)
 
-        nucleoId = self.find_by_name(nucleo.title)
+        self.id_nucleo = result[0]
         userId = self.database.session.user_id
-        self.conectrepository.conet_user_nucleo(userId,nucleoId)
-
+        self.conectrepository.conect_user_nucleo(userId, self.id_nucleo)
+        
+        return result
 
 
     def find_by_name(self, title):

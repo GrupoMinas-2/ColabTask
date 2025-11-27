@@ -22,7 +22,7 @@ class LoginPage(Screen):
         if response["sucess"]:
             print(response["message"])
 
-            self.manager.get_screen("homepage").insertNucleos_byUser(self.ids.inputMail.text)
+            #self.manager.get_screen("homepage").insertNucleos_byUser(self.ids.inputMail.text)
             self.manager.current = "homepage"
 
         else:

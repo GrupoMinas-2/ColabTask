@@ -1,9 +1,12 @@
+from app.domain.services.session import Session
 from app.data.repositories.user_repository import Usee_repository
 from app.domain.entities.user import User
 
 class Auth_service: 
     def __init__(self):
         self.repository= Usee_repository()
+        self.session = Session()
+            
 
     def register(self, email, name, pasword):        
 
@@ -36,6 +39,9 @@ class Auth_service:
         if dataUser:
             
             if  dataUser[3] == pasword: 
+
+                self.session.user_id = dataUser[0]
+
                 return {
                     "sucess": True,
                     "message": "Senha correta!",
