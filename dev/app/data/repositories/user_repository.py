@@ -26,22 +26,19 @@ class Usee_repository:
         
         self.email =result[1]
 
-        self.dataBase.session.user_id= result[0] 
-
         return result
     
 
-    def find_nucleo_user(self, email):
-        iduser= self.find_by_email(email)
+    def find_nucleo_user(self, iduser):
 
         query= """
             SELECT * FROM nucleos AS n 
             INNER JOIN user_nucleo un
-            ON n.idnucleo = un.user_id
+            ON n.idnucleo = un.nucleo_id
             WHERE un.user_id = ? 
         """
 
-        value= (iduser[0],)
+        value= (iduser,)
 
         result= self.dataBase.readData_all(query, value)
 

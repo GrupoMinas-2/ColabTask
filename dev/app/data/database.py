@@ -1,17 +1,20 @@
-#from kivy.uix.filechooser import error
-#import os
 import sqlite3
-from app.domain.services.session import Session
 
 
 class Database:
-    session = Session()
-
+    
     def __init__(self):
         self.connection = sqlite3.connect('dev/app/data/colabtask.db')
         self.cursor = self.connection.cursor()
+        self.createTable_users()
+        self.createTable_nucleos()
+        self.createTable_tasks()
+        self.createTable_userNucleo()
+        self.createTable_userTask()
 
-        # Tabela de usuários --- 
+
+    # Tabela de usuários --- 
+    def createTable_users(self):
         try:
             self.cursor.execute("""
                 CREATE TABLE IF NOT EXISTS users(
@@ -25,7 +28,8 @@ class Database:
             print("Erro ao criar tabela:", erro)
 
 
-        # Tabela de nucleos --- 
+    # Tabela de nucleos --- 
+    def createTable_nucleos(self):
         try: 
             self.cursor.execute("""
                 CREATE TABLE IF NOT EXISTS nucleos(
@@ -37,8 +41,11 @@ class Database:
         except sqlite3.Error as erro:
             print("Erro ao criar tabela:", erro)
 
+        #self.connection.commit()
 
-        # Tabela de tarefas --- 
+
+    # Tabela de tarefas --- 
+    def createTable_tasks(self):
         try:
             self.cursor.execute("""
                 CREATE TABLE IF NOT EXISTS tasks(
@@ -48,14 +55,17 @@ class Database:
                     status TEXT NOT NULL,
                     end_date TEXT, 
                     nucleo_id INTEGER NOT NULL,
-                    FOREIGN KEY (nucleo_id) REFERENCES nucleo(id)
+                    FOREIGN KEY (nucleo_id) REFERENCES nucleo(idnucleo)
                 )
             """)
         except sqlite3.Error as erro:
             print("Erro ao criar tabela: ", erro)
 
+        #self.connection.commit()
 
-        # tabela de relação usuário <--> núcleo 
+
+    # tabela de relação usuário <--> núcleo 
+    def createTable_userNucleo(self):
         try:
             self.cursor.execute("""
                 CREATE TABLE IF NOT EXISTS user_nucleo(
@@ -69,8 +79,11 @@ class Database:
         except sqlite3.Error as erro:
             print("Erro ao criar tabela: ", erro)
 
+        #self.connection.commit()
 
-        # tabela de relação usuário <--> task
+
+    # tabela de relação usuário <--> task
+    def createTable_userTask(self):
         try:
             self.cursor.execute("""
                 CREATE TABLE IF NOT EXISTS user_task(
@@ -84,14 +97,15 @@ class Database:
         except sqlite3.Error as erro: 
             print("Erro ao criar tabela: ", erro)
 
-        self.connection.commit()
+        #self.connection.commit()
 
 
     # metódos de leitura e alteração
     def setData_one(self, query, values=()):
         self.cursor.execute(query , values)
+        registro = self.cursor.fetchone()
         self.connection.commit()
-        return self.cursor.fetchone()
+        return registro
 
     def readData_one(self, query, values=()):
         self.cursor.execute(query, values)
@@ -99,8 +113,9 @@ class Database:
 
     def setData_all(self, query, values=()):
         self.cursor.executemany(query, values)
+        registros= self.cursor.fetchall()
         self.connection.commit()
-        return self.cursor.fetchall()
+        return registros
 
     def readData_all(self, query, values=()):
         self.cursor.execute(query, values)
@@ -108,25 +123,25 @@ class Database:
 
 
 db= Database()
-element = ("teste_Returning9","teste")
+#element = ("teste_Returning9","teste")
+#
+#db.cursor.executemany("INSERT INTO nucleos (title_nucleo, decription) VALUES (?, ?) RETURNING *", (element,) )
+#print(db.cursor.fetchone())
+#
+#idnuc = db.cursor.lastrowid
+#db.connection.commit()
+#
+#db.cursor.execute("SELECT * FROM nucleos WHERE idnucleo =?", (idnuc,))
+#print(db.cursor.fetchone())
 
-db.cursor.executemany("INSERT INTO nucleos (title_nucleo, decription) VALUES (?, ?) RETURNING *", (element,) )
-print(db.cursor.fetchone())
 
-idnuc = db.cursor.lastrowid
-db.connection.commit()
-
-db.cursor.execute("SELECT * FROM nucleos WHERE idnucleo =?", (idnuc,))
-print(db.cursor.fetchone())
-
-
-#b.cursor.execute("DROP TABLE nucleos")
-#b.connection.commit()
+#db.cursor.execute("DROP TABLE nucleos")
+#db.connection.commit()
 
 #db.cursor.execute("""
 #    CREATE TABLE IF NOT EXISTS nucleos_temp(
 #        idnucleo INTEGER PRIMARY KEY AUTOINCREMENT,
-#        title_nucleo TEXT NOT NULL UNIQUE, 
+#        title_nucleo TEXT NOT NULL, 
 #        decription TEXT
 #    )
 #""")
@@ -150,3 +165,23 @@ print(db.cursor.fetchone())
 #db.cursor.execute("ALTER TABLE nucleos_temp RENAME TO nucleos")
 #db.cursor.execute("ALTER TABLE tasks_temp RENAME TO tasks")
 #db.connection.commit()
+
+#db.cursor.execute("DELETE FROM nucleos")
+#db.cursor.execute("DELETE FROM user_nucleo")
+#db.cursor.execute("DELETE FROM sqlite_sequence WHERE name = 'nucleos'")
+#db.cursor.execute("DELETE FROM sqlite_sequence WHERE name = 'user_nucleo'")
+#db.connection.commit()
+
+#    mascara = (idnucleo, titulo, descricao, user_id, nucleo_id)
+#    
+#    teste= [(3, 'testeGabriel', 'gabriel nucleo', 3, 1),
+#            (3, 'testeGabriel', 'gabriel nucleo', 3, 2),
+#            (3, 'testeGabriel', 'gabriel nucleo', 3, 3),
+#            (3, 'testeGabriel', 'gabriel nucleo', 3, 4),
+#            (3, 'testeGabriel', 'gabriel nucleo', 3, 12)]
+#        
+#    teste2= [(1, 'testes', 'testes', 3, 1),
+#             (2, 'testes', 'teste', 3, 2),
+#             (3, 'testeGabriel', 'gabriel nucleo', 3, 3),
+#             (4, 'testeGabriel', 'gabriel nucleo', 3, 4),
+#             (12, 'familia teste', 'so teste', 3, 12)]

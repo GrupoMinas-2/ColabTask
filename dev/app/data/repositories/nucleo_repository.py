@@ -20,22 +20,20 @@ class Nucleo_repository:
         result = self.database.setData_one(query, parms)
 
         self.id_nucleo = result[0]
-        userId = self.database.session.user_id
-        self.conectrepository.conect_user_nucleo(userId, self.id_nucleo)
-        
+        print (self.id_nucleo)
         return result
 
 
-    def find_by_name(self, title):
-        query = """
-            SELECT * FROM nucleos WHERE title_nucleo = ?
-        """
-        parms = (title,)
-
-        result= self.database.readData_one(query, parms)
-        
-        idnucleo= self.database.session.current_nucleoId= result[0]
-
-        return idnucleo
+    #def find_by_name(self, title):
+    #    query = """
+    #        SELECT * FROM nucleos WHERE title_nucleo = ?
+    #    """
+    #    parms = (title,)
+#
+    #    result= self.database.readData_one(query, parms)
+    #    
+    #    idnucleo= self.database.session.current_nucleoId= result[0]
+#
+    #    return idnucleo
     
     

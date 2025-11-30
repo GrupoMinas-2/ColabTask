@@ -10,7 +10,10 @@ class Session:
 
     def __init__(self):
         
-        conectUserNucleo= User_Nucleo_repository()
-        conectUserNucleo.conect_user_nucleo(self.user_id , self.current_nucleoId)
+        self.conectUserNucleo= User_Nucleo_repository()
+        pass
+    
+    def conect_UserNucleo (self):
+        self.conectUserNucleo.conect_user_nucleo(self.user_id , self.current_nucleoId)
 
         

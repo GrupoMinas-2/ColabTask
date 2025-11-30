@@ -11,10 +11,11 @@ class Nucleo_service:
     def create(self, title, description):
         
         newNucleo = Nucleo(title, description)
-        self.repository.insert_nucleo(newNucleo)
+        register = self.repository.insert_nucleo(newNucleo)
         return{
             "sucess": True,
-            "message": "núcleo criado!"
+            "message": "núcleo criado!",
+            "id": register[0]
         }
     
     
@@ -23,5 +24,5 @@ class Nucleo_service:
         return dataNucleo[0]
     
 
-    def get_Nucleos(self, email):
-        return self.userRepository.find_nucleo_user(email)
+    def get_Nucleos(self, iduser):
+        return self.userRepository.find_nucleo_user(iduser)

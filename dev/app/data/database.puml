@@ -28,6 +28,7 @@ entity "Tarefas" as tarefas {
 entity "Usuário ↔ Núcleo" as usuario_nucleo {
     *user_id : INTEGER <<PK, FK>>
     *nucleo_id : INTEGER <<PK, FK>>
+    acess_nivel: TEXT
 }
 
 entity "Usuário ↔ Tarefa" as usuario_tarefa {

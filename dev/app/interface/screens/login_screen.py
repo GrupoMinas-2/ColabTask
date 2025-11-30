@@ -1,5 +1,4 @@
 from kivy.lang.builder import Builder
-
 from kivy.uix.screenmanager import Screen
 
 from app.domain.useCases.login_user import usecase_login
@@ -11,7 +10,6 @@ Builder.load_file("dev/app/interface/kvLang/LoginPage.kv")
 class LoginPage(Screen):
     
     def do_login(self):
-        pass
         email_input = self.ids.inputMail.text
         password_input = self.ids.inpuPassword.text
 
@@ -20,9 +18,12 @@ class LoginPage(Screen):
         response = self.usecase.executeLogin(email_input, password_input)
 
         if response["sucess"]:
-            print(response["message"])
+            print(response["message"], response["iduser"])
+            
+            self.manager.get_screen("homepage").inicializate_Session(response["iduser"])
 
-            #self.manager.get_screen("homepage").insertNucleos_byUser(self.ids.inputMail.text)
+            self.manager.get_screen("homepage").searchNucleos_byUser(response["iduser"])
+
             self.manager.current = "homepage"
 
         else:

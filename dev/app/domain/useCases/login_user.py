@@ -7,8 +7,4 @@ class usecase_login:
     def executeLogin(self, email, pasword):
         result = self.service.login_acaunt(email, pasword)
 
-        if not result["sucess"]:
-            return result
-        
-        else:
-            return {"sucess": True, "message": "Login bem sucedido!"}
+        return result
