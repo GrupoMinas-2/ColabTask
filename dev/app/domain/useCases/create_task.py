@@ -4,6 +4,6 @@ class useCase_createTask:
     def __init__(self):
      self.service= Task_service()
 
-    def executeCreateTask(self, titleTask, descriptionTask, statusTask, end_dateTask, idnucleoTask):
-       result = self.service.create(titleTask, descriptionTask, statusTask, end_dateTask, idnucleoTask)
+    def executeCreateTask(self, titleTask, end_dateTask, statusTask, descriptionTask, idnucleoTask):
+       result = self.service.create(titleTask, end_dateTask, statusTask, descriptionTask, idnucleoTask)
        return result

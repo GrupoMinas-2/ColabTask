@@ -9,6 +9,7 @@
         on_release: 
             app.root.current= 'taskspage'
             app.root.get_screen('taskspage').open_TaskPage(root.idnucleo)
+            app.root.get_screen('taskspage').searchTasks_byNucleo()
 
         canvas.before:
             Color:

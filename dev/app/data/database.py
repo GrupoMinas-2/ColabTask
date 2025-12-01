@@ -51,9 +51,9 @@ class Database:
                 CREATE TABLE IF NOT EXISTS tasks(
                     idtask INTEGER PRIMARY KEY AUTOINCREMENT,
                     title_task TEXT NOT NULL,
-                    description TEXT,
-                    status TEXT NOT NULL,
                     end_date TEXT, 
+                    status TEXT NOT NULL,
+                    description TEXT,
                     nucleo_id INTEGER NOT NULL,
                     FOREIGN KEY (nucleo_id) REFERENCES nucleo(idnucleo)
                 )
@@ -146,23 +146,26 @@ db= Database()
 #    )
 #""")
 
-#db.cursor.execute("""
-#CREATE TABLE IF NOT EXISTS tasks_temp(
-#    idtask INTEGER PRIMARY KEY AUTOINCREMENT,
-#    title_task TEXT NOT NULL,
-#    description TEXT,
-#    status TEXT NOT NULL,
-#    end_date TEXT, 
-#    nucleo_id INTEGER NOT NULL,
-#    FOREIGN KEY (nucleo_id) REFERENCES nucleo(idnucleo)
-#)
-#""")
-
+#db.cursor.execute("DROP TABLE tasks")
 #db.connection.commit()
+
+#db.cursor.execute("""
+#    CREATE TABLE IF NOT EXISTS tasks_temp(
+#        idtask INTEGER PRIMARY KEY AUTOINCREMENT,
+#        title_task TEXT NOT NULL,
+#        end_date TEXT, 
+#        status TEXT NOT NULL,
+#        description TEXT,
+#        nucleo_id INTEGER NOT NULL,
+#        FOREIGN KEY (nucleo_id) REFERENCES nucleo(idnucleo)
+#    )
+#""")
+#
+#db.connection.commit()
+#db.cursor.execute("ALTER TABLE tasks_temp RENAME TO tasks")
 
 #db.cursor.execute("DROP TABLE nucleos")
 #db.cursor.execute("DROP TABLE tasks")
-#db.cursor.execute("ALTER TABLE nucleos_temp RENAME TO nucleos")
 #db.cursor.execute("ALTER TABLE tasks_temp RENAME TO tasks")
 #db.connection.commit()
 
