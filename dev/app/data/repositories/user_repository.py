@@ -9,22 +9,24 @@ class Usee_repository:
     def insert_register(self, user):
         query= """ 
             INSERT INTO users (email, name, password)
-            VALUES (?,?,?)
+            VALUES (?,?,?) RETURNING *
         """
 
         parms =(user.email,
                 user.name, 
                 user.pasword)
 
-        self.dataBase.setData_one(query , parms)
+        result = self.dataBase.setData_one(query , parms)
+
+        return result
     
 
     def find_by_email(self, email ):
         query= " SELECT * FROM users WHERE email = ? "
         value= (email, )
         result= self.dataBase.readData_one(query, value)
-        
-        self.email =result[1]
+        if not result is None:
+            self.email =result[1]
 
         return result
     

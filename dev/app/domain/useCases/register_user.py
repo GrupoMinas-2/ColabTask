@@ -11,5 +11,8 @@ class useCase_registerUser:
         if not result["sucess"]:
             return result
 
-        return {"sucess": True, "message": "Usuário criado"}
+        return {
+            "sucess": True,
+            "message": "Usuário criado",
+            "iduser": result["iduser"]}
     

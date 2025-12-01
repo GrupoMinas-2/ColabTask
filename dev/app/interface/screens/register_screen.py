@@ -20,6 +20,7 @@ class RegisterPage(Screen):
         if response["sucess"]:
             print("Conta criada com sucesso!")
             self.manager.current = "homepage"
+            self.manager.get_screen("homepage").inicializate_Session(response["iduser"])
 
         else:
             print("erro", response["response"])

@@ -24,11 +24,13 @@ class Auth_service:
         
         if not self.repository.find_by_email(email): 
             newUser= User(email, name, pasword)
+            
+            registro = self.repository.insert_register(newUser)
 
-            self.repository.insert_register(newUser)
             return {
                 "sucess": True,
-                "response": "usuário cadastrado"
+                "response": "usuário cadastrado",
+                "iduser": registro[0]
             }
         
         
