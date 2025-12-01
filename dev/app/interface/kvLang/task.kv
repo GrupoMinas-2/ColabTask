@@ -13,47 +13,53 @@
             size: self.size
             radius: [10]
 
-    Image:
-        source: 'dev/static/images/ui_user_profile_avatar_person_icon_208734.png'
-        allow_stretch: True
-        size_hint_x: 0.7
-        size_hint_y: 1
+    ItenBehavior:
+        padding: 0
+        on_release: 
+            app.root.current= ('taskcontent')
+            app.root.get_screen('taskcontent').open_Task(root)
 
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint_x: 2
+        Image:
+            source: 'dev/static/images/ui_user_profile_avatar_person_icon_208734.png'
+            allow_stretch: True
+            size_hint_x: 0.7
+            size_hint_y: 1
 
-        Label:
-            id: taskTitle 
-            text: 'nome tarefa'
-            font_size: 18
-            color: (0,0,0,1)
-            halign: 'left'
-            text_size: self.size
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 2
 
-        Label:
-            id: taskDescription
-            text: 'descrição'
-            color: (0.4, 0.4, 0.4, 1)
-            halign: 'left'
-            text_size: self.size
+            Label:
+                id: taskTitle 
+                text: 'nome tarefa'
+                font_size: 18
+                color: (0,0,0,1)
+                halign: 'left'
+                text_size: self.size
 
-    
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint_x: 1
+            Label:
+                id: taskDescription
+                text: 'descrição'
+                color: (0.4, 0.4, 0.4, 1)
+                halign: 'left'
+                text_size: self.size
 
-        Label:
-            id: taskDate 
-            text: 'dd/mm/aaaa'
-            color: (0.4, 0.4, 0.4, 1)
-            halign: 'right'
-            text_size: self.size
 
-        Label:
-            id: taskPerson
-            text: 'integrante@email.com'
-            color: (0.4, 0.4, 0.4, 1)
-            halign: 'right'
-            text_size: self.size
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 1
+
+            Label:
+                id: taskDate 
+                text: 'dd/mm/aaaa'
+                color: (0.4, 0.4, 0.4, 1)
+                halign: 'right'
+                text_size: self.size
+
+            Label:
+                id: taskPerson
+                text: 'integrante@email.com'
+                color: (0.4, 0.4, 0.4, 1)
+                halign: 'right'
+                text_size: self.size
     

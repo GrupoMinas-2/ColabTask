@@ -1,0 +1,90 @@
+#: include app/interface/kvLang/Components.kv
+
+<Task_screen>:
+    name: ('taskcontent')
+
+    BGwhiteGreen: 
+        FloatLayout:
+            size_hint_y: 0.01
+            orientation: 'vertical'
+            ActionBar:
+                pos_hint: {'top': 1}
+                ActionView:
+                    ActionPrevious:
+                        on_release: app.root.current='taskspage'
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            padding: 20
+            BoxLayout:
+                size_hint_y: 0.5
+                padding: 0
+                Image:
+                    source: 'dev/static/images/ui_user_profile_avatar_person_icon_208734.png'
+                    allow_stretch: True
+                    size_hint_x: 0.7
+                    size_hint_y: 0.7
+
+
+            TextInputTask:
+                id: nametask
+                padding: [2, 0]
+                hint_text: "nome da tarefa"
+                color: (0,0,0,1)
+                halign: 'center'
+                valign: 'center'
+                multiline: False    
+                font_size: 20
+                size_hint_y: 0.1
+                height: dp(30)
+                width: dp(30)
+                #pos_hint_y: 1
+                #size_hint_x: 2
+
+            BoxLayout:
+                size_hint_y: 0.1
+                spacing: 5
+                TextInputTask:
+                    id: dateTask
+                    hint_text: "dd/mm/aaaa"
+                    multiline: False    
+                    halign: 'center'
+                    #size_hint_y: None
+                    pos_hint_y: 1
+                    size_hint_x: 1
+                    height: dp(30)
+
+                TextInputTask:
+                    id: personTask
+                    hint_text: "integrante@email.com"
+                    multiline: False   
+                    halign: 'center' 
+                    #size_hint_y: None
+                    pos_hint_y: 1
+                    size_hint_x: 1
+                    height: dp(30)
+
+
+            TextInputTask: 
+                id: descriptionTask
+                hint_text: "Descrição"
+                multiline: True
+                size_hint_y: 1
+                height: dp(20)
+                padding: dp(5)
+                color: (1, 1, 1, 1)
+
+                canvas.before: 
+                    Color:  
+                        rgba: (0.5, 0.5, 0.5, 1)
+                    Line: 
+                        rounded_rectangle:(self.x, self.y, self.width, self.height, 5)
+                        width: 1.02
+
+            BoxLayout:
+                size_hint_y: 0.1
+                padding: [60, 0]   
+
+                EnterButton:
+                    text: "alterar tarefa" 
+                    #on_release: root.
