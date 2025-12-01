@@ -38,7 +38,7 @@ class HomePage(Screen):
             self.session.conect_UserNucleo()
 
             self.ids.containerNucleos.add_widget(
-                Nucleo(titulo, descricao)
+                Nucleo(titulo, descricao, self.session.current_nucleoId)
             ) 
 
         else:
@@ -52,4 +52,4 @@ class HomePage(Screen):
         print(listNucleos)
         for nucleo in listNucleos:
             self.ids.containerNucleos.add_widget(
-                Nucleo(nucleo[1], nucleo[2]) )
+                Nucleo(nucleo[1], nucleo[2], nucleo[0]) )

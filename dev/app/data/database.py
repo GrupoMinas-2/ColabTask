@@ -166,10 +166,10 @@ db= Database()
 #db.cursor.execute("ALTER TABLE tasks_temp RENAME TO tasks")
 #db.connection.commit()
 
-#db.cursor.execute("DELETE FROM nucleos")
 #db.cursor.execute("DELETE FROM user_nucleo")
 #db.cursor.execute("DELETE FROM sqlite_sequence WHERE name = 'nucleos'")
 #db.cursor.execute("DELETE FROM sqlite_sequence WHERE name = 'user_nucleo'")
+#db.cursor.execute("DELETE FROM nucleos WHERE idnucleo = 4 ")
 #db.connection.commit()
 
 #    mascara = (idnucleo, titulo, descricao, user_id, nucleo_id)

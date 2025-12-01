@@ -21,6 +21,7 @@ class Nucleo_repository:
 
         self.id_nucleo = result[0]
         print (self.id_nucleo)
+        
         return result
 
 

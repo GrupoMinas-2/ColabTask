@@ -10,6 +10,11 @@ class Nucleo_service:
     
     def create(self, title, description):
         
+        if not title.strip():
+            title = "Nome núcleo"
+        if not description.strip():
+            description= "sem descrição"
+
         newNucleo = Nucleo(title, description)
         register = self.repository.insert_nucleo(newNucleo)
         return{

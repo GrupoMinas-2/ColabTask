@@ -6,7 +6,9 @@
     height: dp(60)
     ItenBehavior:
         padding: 0
-        on_release: app.root.current= 'taskspage'
+        on_release: 
+            app.root.current= 'taskspage'
+            app.root.get_screen('taskspage').open_TaskPage(root.idnucleo)
 
         canvas.before:
             Color:
