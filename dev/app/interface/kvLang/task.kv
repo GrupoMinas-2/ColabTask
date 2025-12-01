@@ -3,8 +3,16 @@
 <Task>: 
     id: taskBox
     size_hint_y: None
-    height: dp(60)
-    
+    height: dp(70)
+    padding: 5
+    canvas.before:
+        Color:
+            rgba: 1,1,1,1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
+
     Image:
         source: 'dev/static/images/ui_user_profile_avatar_person_icon_208734.png'
         allow_stretch: True

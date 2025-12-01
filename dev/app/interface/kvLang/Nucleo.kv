@@ -4,19 +4,21 @@
     id: nucleo
     size_hint_y: None
     height: dp(60)
+    
+    canvas.before:
+        Color:
+            rgba: 1,1,1,1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
+
     ItenBehavior:
         padding: 0
         on_release: 
             app.root.current= 'taskspage'
             app.root.get_screen('taskspage').open_TaskPage(root.idnucleo)
             app.root.get_screen('taskspage').searchTasks_byNucleo()
-
-        canvas.before:
-            Color:
-                rgba: (0.5, 0.5, 0.5, 1)
-            Line:
-                rectangle: (app.root.get_screen("homepage").ids.containerNucleos.x, self.y, app.root.get_screen("homepage").ids.containerNucleos.width, self.height)
-                width: 1
 
         Image:
             size_hint_x: 0.5

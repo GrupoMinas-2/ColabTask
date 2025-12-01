@@ -31,4 +31,8 @@ class LoginPage(Screen):
             self.popup= PopupError()
             self.popup.inserPopupError(response["message"])
         
+    def test_metod(self):
+        self.manager.get_screen("homepage").searchNucleos_byUser(3)
+        self.manager.current = "homepage"
+
     

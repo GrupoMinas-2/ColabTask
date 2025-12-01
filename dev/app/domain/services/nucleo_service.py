@@ -24,9 +24,9 @@ class Nucleo_service:
         }
     
     
-    def getId_Nucleo(self, title):
-        dataNucleo= self.repository.find_by_name(title)
-        return dataNucleo[0]
+    def getNucleo_byID(self, idnucleo):
+        dataNucleo= self.repository.find_by_id(idnucleo)
+        return dataNucleo
     
 
     def get_Nucleos(self, iduser):

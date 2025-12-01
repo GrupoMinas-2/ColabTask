@@ -8,7 +8,14 @@
             pos: self.pos
             size: self.size
 
-
+<BGwhiteGreen@BoxLayout>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: (0.92, 0.95, 0.96, 1)
+        Rectangle: 
+            pos: self.pos
+            size: self.size
 
 # padrão para input -------
 <BoxInput@BoxLayout>:

@@ -3,7 +3,7 @@
 <HomePage>: 
     padding: [0]
     name: ('homepage')
-    BGwhite:
+    BGwhiteGreen:
         id: homeLaut
         FloatLayout:
             size_hint_y: 0.09
@@ -16,19 +16,38 @@
 
         ScrollView:          
             do_scroll_x: False
+
+            #BoxLayout:
+            #    id: containerNucleos
+            #    orientation: 'vertical'
+            #    padding: 10
+            #    size_hint_y: None
+            #    height: self.minimum_height 
+            #
             BoxLayout:
-                id: containerNucleos
                 orientation: 'vertical'
-                padding: 10
                 size_hint_y: None
                 height: self.minimum_height 
+                Label:
+                    size_hint_y: None 
+                    text: 'Nucleos'
+                    font_size: 24
+                    color: (0,0,0,1)
+                    height: 50
+                BoxLayout:
+                    id: containerNucleos
+                    orientation: 'vertical'
+                    padding: 10
+                    spacing: 10
+                    size_hint_y: None
+                    height: self.minimum_height 
                 
 
         BoxLayout:
             size_hint_y: 0.1
             padding: [60, 4]   
 
-            Button:
-                text: "novo Nucleo" 
+            EnterButton:
+                text: "novo Nucleo +" 
                 on_release: root.insertModal()
 

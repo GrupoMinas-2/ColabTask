@@ -24,6 +24,15 @@ class Nucleo_repository:
         
         return result
 
+    def find_by_id(self, idnucleo):
+        query = """
+            SELECT * FROM nucleos WHERE idnucleo = ?
+        """
+        value =(idnucleo, )
+
+        result= self.database.readData_one(query, value )
+
+        return result
 
     #def find_by_name(self, title):
     #    query = """
