@@ -62,7 +62,8 @@
                 size_hint_x: 0.4
                 height: dp(40)
                 text: 'Entrar'
-                on_release: root.do_login()
+                on_release: app.root.current: 'homepage'
+                #on_release: root.do_login()
 
             EnterButton:
                 id: btnRedrect
