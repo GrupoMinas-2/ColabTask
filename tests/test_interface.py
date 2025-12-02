@@ -6,17 +6,17 @@ from pathlib import Path
 from kivy.lang import Builder
 
 
-# MOCK GLOBAL PARA Builder.load_file (Isso impede que qualquer load_file tente abrir arquivos .kv reais)
+# MOCK GLOBAL PARA Builder.load_file 
 patcher = patch.object(Builder, "load_file", return_value=None)
 patcher.start()
 
 
-# CONFIGURAÇÃO DO KV_ROOT PARA TESTES (opcional)
+# CONFIGURAÇÃO DO KV_ROOT PARA TESTES 
 KV_ROOT = Path(os.environ.get("KV_ROOT", ""))
 
 # IMPORTA MÓDULOS DA APLICAÇÃO
-from dev.app.interface.widgets.nucleo_iten import Nucleo
-from dev.app.interface.screens.home_screen import HomePage
+from app.interface.widgets.nucleo_iten import Nucleo
+from app.interface.screens.home_screen import HomePage
 
 # DEBUG: imprime diretório e arquivos 
 print("Diretório atual:", os.getcwd())
@@ -30,20 +30,20 @@ else:
 # TESTE 1 - Criação de Nucleo sem acessar o banco
 # 
 def test_nucleo_valores_padrao():
-    with patch("dev.app.interface.widgets.nucleo_iten.Nucleo.use_case", create=True) as mock_use_case:
-        # Cria mocks para o serviço e repositório
+    with patch("app.interface.widgets.nucleo_iten.Nucleo.use_case", create=True) as mock_use_case:
+        
         mock_service = MagicMock()
         mock_repository = MagicMock()
         mock_service.repository = mock_repository
         mock_use_case.service = mock_service
 
-        # Instancia Nucleo (não acessa o DB real)
+    
         n = Nucleo.__new__(Nucleo)
         n.use_case = mock_use_case
         n.titulo = "nome núcleo"
         n.descricao = "descrição"
 
-        # Simula chamada do use_case
+      
         n.use_case.service.repository.insert_nucleo(n)
         mock_repository.insert_nucleo.assert_called_once_with(n)
 
@@ -51,7 +51,7 @@ def test_nucleo_valores_padrao():
 def test_homepage_mock_widgets():
     home = HomePage()
 
-    # Mock do container de widgets
+    
     class FakeContainer(BoxLayout):
         def __init__(self):
             super().__init__()
@@ -60,10 +60,10 @@ def test_homepage_mock_widgets():
         def add_widget(self, widget):
             self.adicionados.append(widget)
 
-    # Mock dos ids
+    
     home.ids = {"containerNucleos": FakeContainer()}
 
-    # Adiciona um núcleo mock
+    
     class FakeNucleo:
         pass
 
